@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Serum Offers</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #de9090; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #333; margin-bottom: 30px; }
+    .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .card { width: 220px; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer; text-align: center; }
+    .card:hover { transform: scale(1.05); }
+    .card img { width: 100%; height: 200px; object-fit: cover; }
+    .info { padding: 10px; }
+    .title { font-size: 16px; font-weight: bold; color: #444; margin: 10px 0; }
+    .price { font-size: 14px; color: #888; }
+    .discount { font-size: 14px; color: green; font-weight: bold; margin-top: 5px; }
+    .btn { display: inline-block; margin-top: 10px; padding: 8px 12px; background: #ff5722; color: #fff; text-decoration: none; border-radius: 4px; }
+    .btn:hover { background: #e64a19; }
+  </style>
+</head>
+<body>
+
+  <h1>Latest Serum Offers </h1>
+  <div class="products" id="product-list">
+    <!-- Cards will be inserted here -->
+  </div>
+
+  <script>
+    const products = [
+      {
+        name: "Vitamin C Daily Glow Face Serum - 30ml",
+        price: 350,
+        discount: 12,
+        img: "image/1.webp",
+        link: "https://mamaearth.in/product/vitamin-c-daily-glow-face-serum-with-vitamin-c-turmeric-for-radiant-skin-30-ml"
+      },
+      {
+        name: "10% Vitamin C Essence Serum - 30ml",
+        price: 614,
+        discount: 12,
+        img: "image/2.jpg",
+        link: "https://mamaearth.in/product/10-vitamin-c-face-serum-essence-serum-with-vitamin-c-and-gotu-kola-for-skin-illumination-30ml"
+      },
+      {
+        name: "Vitamin C Daily Glow Face Serum - 10ml",
+        price: 197,
+        discount: 12,
+        img: "image/3.webp",
+        link: "https://mamaearth.in/product/vitamin-c-daily-glow-face-serum-10-ml"
+      },
+      {
+        name: "Skin Illuminate Face Serum - 30g",
+        price: 599,
+        discount: 0,
+        img: "image/jpg4.jpg",
+        link: "https://mamaearth.in/product/skin-illuminate-face-serum-for-radiant-skin-with-vitamin-c-turmeric-30-gm"
+      },
+      // From product_query : additional ones
+      {
+        name: "Skin Correct Face Serum 30ml",
+        price: 349,
+        discount: 0,
+        img: "image/5.jpg",
+        link: "https://www.mamaearth.in/product/skin-correct-face-serum-with-niacinamide-and-ginger-extract-for-acne-marks-and-scars-30-ml"
+      },
+      {
+        name: "Ubtan Face Serum 30ml",
+        price: 499,
+        discount: 0,
+        img: "image/6.jpg",
+        link: "https://www.mamaearth.in/product/ubtan-face-serum-30-ml"
+      },
+       {
+      name: "Vitamin C Daily Glow Face Serum - 30ml",
+      price: 350,
+      discount: 12,
+      img: "image/1.webp",
+      link: "https://mamaearth.in/product/vitamin-c-daily-glow-face-serum-with-vitamin-c-turmeric-for-radiant-skin-30-ml"
+    },
+    {
+      name: "10% Vitamin C Essence Serum - 30ml",
+      price: 614,
+      discount: 12,
+      img: "image/2.jpg",
+      link: "https://mamaearth.in/product/10-vitamin-c-face-serum-essence-serum-with-vitamin-c-and-gotu-kola-for-skin-illumination-30ml"
+    },
+    {
+      name: "Vitamin C Daily Glow Face Serum - 10ml",
+      price: 197,
+      discount: 12,
+      img: "image/3.webp",
+      link: "https://mamaearth.in/product/vitamin-c-daily-glow-face-serum-10-ml"
+    },
+    {
+      name: "Skin Illuminate Face Serum - 30g",
+      price: 599,
+      discount: 0,
+      img: "image/jpg4.jpg",
+      link: "https://mamaearth.in/product/skin-illuminate-face-serum-for-radiant-skin-with-vitamin-c-turmeric-30-gm"
+    },
+    {
+      name: "Skin Correct Face Serum 30ml",
+      price: 349,
+      discount: 0,
+      img: "image/5.jpg",
+      link: "https://www.mamaearth.in/product/skin-correct-face-serum-with-niacinamide-and-ginger-extract-for-acne-marks-and-scars-30-ml"
+    },
+    {
+      name: "Ubtan Face Serum 30ml",
+      price: 499,
+      discount: 0,
+      img: "image/6.jpg",
+      link: "https://www.mamaearth.in/product/ubtan-face-serum-30-ml"
+    },
+
+    // --- The Derma Co ---
+    {
+      name: "The Derma Co 10% Niacinamide Face Serum - 30ml",
+      price: 499,
+      discount: 15,
+      img: "data:image/jpeg;base64,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",
+      link: "https://thedermaco.com/product/10-niacinamide-face-serum-for-acne-marks"
+    },
+    {
+      name: "The Derma Co 2% Salicylic Acid Serum - 30ml",
+      price: 549,
+      discount: 10,
+      img: "https://m.media-amazon.com/images/I/61d22zfqoDL.jpg",
+      link: "https://thedermaco.com/product/2-salicylic-acid-face-serum-for-acne"
+    },
+
+    // --- Minimalist ---
+    {
+      name: "Minimalist 2% Hyaluronic Acid Serum - 30ml",
+      price: 599,
+      discount: 8,
+      img: "https://m.media-amazon.com/images/I/51gRO13Q0+L.jpg",
+      link: "https://beminimalist.co/products/2-hyaluronic-acid-face-serum"
+    },
+    {
+      name: "Minimalist 10% Vitamin C Face Serum - 30ml",
+      price: 699,
+      discount: 12,
+      img: "https://m.media-amazon.com/images/I/61vmEu4MuZL.jpg",
+      link: "https://beminimalist.co/products/10-vitamin-c-face-serum"
+    },
+
+    // --- Plum ---
+    {
+      name: "Plum 15% Vitamin C Face Serum - 30ml",
+      price: 550,
+      discount: 10,
+      img: "https://plumgoodness.com/cdn/shop/files/110_24fac47a-10dd-4e66-9491-d73272a5d74d.jpg?v=1735905481&width=1214",
+      link: "https://plumgoodness.com/products/15-vitamin-c-face-serum"
+    },
+    {
+      name: "Plum 2% Niacinamide Face Serum - 30ml",
+      price: 500,
+      discount: 5,
+      img: "https://plumgoodness.com/cdn/shop/files/01_bc09cb17-f8ca-4872-8322-30fec3cd4d34.jpg?v=1711905512&width=1214",
+      link: "https://plumgoodness.com/products/2-niacinamide-face-serum"
+    },
+
+    // --- Dot & Key ---
+    {
+      name: "Dot & Key 20% Vitamin C Face Serum - 30ml",
+      price: 725,
+      discount: 15,
+      img: "https://m.media-amazon.com/images/I/51APoFsZ+lL._UF1000,1000_QL80_.jpg",
+      link: "https://www.dotandkey.com/products/vitamin-c-serum"
+    },
+    {
+      name: "Dot & Key Niacinamide + Salicylic Serum - 30ml",
+      price: 695,
+      discount: 10,
+      img: "https://m.media-amazon.com/images/I/51APoFsZ+lL._UF1000,1000_QL80_.jpg",
+      link: "https://www.dotandkey.com/products/niacinamide-salicylic-serum"
+    },
+
+    // --- L'Oreal Paris ---
+    {
+      name: "L'Oreal Paris Revitalift 1.5% Hyaluronic Acid Serum - 30ml",
+      price: 899,
+      discount: 20,
+      img: "https://m.media-amazon.com/images/I/51dyKxcQAaL.jpg",
+      link: "https://www.lorealparis.co.in/revitalift-15-hyaluronic-acid-serum"
+    },
+    {
+      name: "L'Oreal Paris Glycolic Bright Face Serum - 30ml",
+      price: 749,
+      discount: 10,
+      img: "https://m.media-amazon.com/images/I/31XTZ9GdEBL._UF1000,1000_QL80_.jpg",
+      link: "https://www.lorealparis.co.in/glycolic-bright-serum"
+    }
+    ];
+
+    
+
+    // Sort by discount descending
+    products.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+
+    const container = document.getElementById("product-list");
+
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <div class="info">
+          <div class="title">${p.name}</div>
+          <div class="price">₹${p.price}</div>
+          ${p.discount > 0 ? `<div class="discount">${p.discount}% OFF</div>` : ''}
+          <a href="${p.link}" target="_blank" class="btn">View on Mamaearth</a>
+        </div>
+      `;
+      // Make whole card clickable
+      card.addEventListener('click', () => {
+        window.open(p.link, '_blank');
+      });
+      container.appendChild(card);
+    });
+    
+  </script>
+
+</body>
+</html>

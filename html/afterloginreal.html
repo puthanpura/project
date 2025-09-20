@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeautyBrief</title>
+  <style>
+    body {
+      background-color: rgb(241, 153, 173);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;           
+      padding: 5px 20px;
+      background: #d3497e;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-style: italic;
+      color: #310303;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box {
+      padding: 8px 35px 8px 15px;
+      border: 2px solid #783d3d;
+      border-radius: 50px;
+      width: 250px;
+    }
+
+    .clear-btn {
+      position: absolute;
+      right: 90px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #555;
+      display: none;
+    }
+
+    .search-button {
+      padding: 8px 19px;
+      margin-left: 0px;
+      border: none;
+      border-radius: 90px;
+      background-color: #c4809b;
+      color: white;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background-color: #27ae60;
+    }
+
+    nav {
+      background: #ea929f;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      margin-right: 15px;
+      color: #333;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .dropdown {
+      display: inline-block;
+      position: relative;
+    }
+
+    .dropbtn {
+      background: none;
+      border: none;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.667);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333333;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background: #ca42568a;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Product Section */
+    .products {
+      padding: 30px;
+      background: #dc74746e;
+      text-align: center;
+    }
+
+    .products h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #f9f9f99e;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #b46058;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+.hair-products .product-card {
+  width: 80%; /* so cards don’t stretch too wide */
+  max-width: 500px; /* keeps them neat */
+}
+
+    .buy-btn:hover {
+      background: #e36b62;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>BeautyBrief </h1> 
+    <form action="https://www.google.com/search" method="get" class="search-container">
+      <input type="text" class="search-box" placeholder="Search..." name="q" id="searchInput">
+      <button type="button" class="clear-btn" id="clearBtn">&times;</button>
+      <button type="submit" class="search-button">Search</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <nav>
+    <a href="index.html">Home</a>|
+
+    <div class="dropdown">
+      <button class="dropbtn">Face</button>   
+      <div class="dropdown-content">
+        <a href="cleanser.html">Cleansers</a>
+        <a href="Hackathon(2).html">Serums</a>
+      </div>
+      
+    </div> |
+
+    <div class="dropdown">
+      <button class="dropbtn">Hair</button>
+      <div class="dropdown-content">
+        <a href="shampoo.html">Shampoo</a>
+        <a href="Hair oil.html">Hair Oils</a>
+      </div>
+      
+    
+    
+  </nav>
+<!-- Slideshow Section -->
+<style>
+/* Slideshow Styles */
+.slideshow-container {
+  position: relative;
+  max-width: 100000px;
+  margin: 0px auto;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  border-radius: 0px;
+  cursor: pointer; /* shows clickable cursor */
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 2px;
+  color: rgb(62, 61, 61);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0,0,0,0.3);
+  transform: translateY(-50%);
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+</style>
+
+<div class="slideshow-container">
+
+  <!-- Slide 1: Minimalist -->
+  <div class="slide">
+    <a href="https://beminimalist.co/" target="_blank">
+      <img src="https://sfycdn.speedsize.com/56385b25-4e17-4a9a-9bec-c421c18686fb/https://beminimalist.co/cdn/shop/files/Artboard_1_copy_9_aa17db2a-7294-4fc9-95bc-6d2d77e0b1e5_1600x.jpg?v=1757076309" alt="Minimalist Serum">
+    </a>
+  </div>
+
+  <!-- Slide 2: MamaEarth -->
+  <div class="slide">
+    <a href="https://mamaearth.in/" target="_blank">
+      <img src="https://st-images.honasa.in/1920_X512_2de8ac5a19.jpg?format=auto&width=&qualilty=">
+    </a>
+  </div>
+
+  <!-- Slide 3: The Derma Co -->
+  <div class="slide">
+    <a href="https://thedermaco.com/" target="_blank">
+      <img src="https://st-images.honasa.in/combo_r35_web_799_81cd0b04f7.jpg?q=40" alt="The Derma Co Sunscreen">
+    </a>
+  </div>
+ 
+  <!-- Navigation Buttons -->
+  <a class="prev">&#10094;</a>
+  <a class="next">&#10095;</a>
+</div>
+
+<script>
+// Slideshow Script
+let slideIndex = 0;
+let slides = document.getElementsByClassName("slide");
+let prev = document.querySelector(".prev");
+let next = document.querySelector(".next");
+
+function showSlide(index) {
+  if(index >= slides.length) slideIndex = 0;
+  if(index < 0) slideIndex = slides.length - 1;
+  for(let i=0; i<slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex].style.display = "block";
+}
+
+// Initial slide
+showSlide(slideIndex);
+
+// Next/prev controls
+prev.addEventListener("click", () => {
+  slideIndex--;
+  showSlide(slideIndex);
+});
+
+next.addEventListener("click", () => {
+  slideIndex++;
+  showSlide(slideIndex);
+});
+
+// Auto slide every 5 seconds
+setInterval(() => {
+  slideIndex++;
+  showSlide(slideIndex);
+}, 5000);
+</script>
+
+
+  <!-- Products Section -->
+  <section class="products">
+   <h1>TOP SELLERS</h1>
+    <div class="product-grid">
+      <!-- Cetaphil Gentle Skin Cleanser 125 ml -->
+<div class="product-card">
+  <img src="https://imgs.search.brave.com/7xWUlEoOmInduXI8ekCmOGiLlG6dJLKTn8uJ9X1DBvo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/amlvbWFydC5jb20v/aW1hZ2VzL3Byb2R1/Y3Qvb3JpZ2luYWwv/NDkzNzE2NzIwL2Nl/dGFwaGlsLWdlbnRs/ZS1za2luLWNsZWFu/c2VyLTEyNS1tbC1w/cm9kdWN0LWltYWdl/cy1vNDkzNzE2NzIw/LXA2MTA4MDkzMjYt/MC0yMDI0MTIzMDE1/MjkuanBnP2ltPVJl/c2l6ZT0oNDIwLDQy/MCk" alt="Cetaphil Gentle Skin Cleanser 125ml">
+  <h3>Cetaphil Gentle Skin Cleanser 125 ml</h3>
+  <p>Soap-free, fragrance-free formula; ideal for sensitive skin daily cleansing.</p>
+  <a href="https://www.nykaa.com/cetaphil-gentle-skin-cleanser/p/xyz?productId=xyz" target="_blank" class="buy-btn"><center>Buy Now</center></a>
+</div>
+
+<!-- The Ordinary Niacinamide 10% + Zinc 1% Serum -->
+<div class="product-card">
+  <img src="https://imgs.search.brave.com/asIUiwBBUjAJv_wIz9_Kn74FGjY3PjbgEr8ddkOJQkk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y3VsdGJlYXV0eS5j/b20vaW1hZ2VzP3Vy/bD1odHRwczovL3N0/YXRpYy50aGNkbi5j/b20vcHJvZHVjdGlt/Zy9vcmlnaW5hbC8x/MzE4NzA3Ni02OTM1/MjMyMDM5MjY2MTEy/LmpwZyZmb3JtYXQ9/d2VicCZhdXRvPWF2/aWYmd2lkdGg9NDAw/JmhlaWdodD00MDAm/Zml0PWNvdmVy" alt="The Ordinary Niacinamide 10% + Zinc 1% Serum">
+  <h3>The Ordinary Niacinamide 10% + Zinc 1% Serum</h3>
+  <p>Regulates sebum, minimizes pores; lightweight water-based serum.</p>
+  <a href="https://www.nykaa.com/the-ordinary-niacinamide-10-zinc-1-serum-30ml/p/abc?productId=abc" target="_blank" class="buy-btn">Buy Now</a>
+</div>
+
+<!-- Dermalogica Skin Smoothing Cream SPF 35 PA+++ -->
+<div class="product-card">
+  <img src="https://imgs.search.brave.com/Yy4-8haM-JLU-bWrVBVbgy6ShYRshwdekczRt4iERYw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmVhdXR5Zmxhc2gu/Y28udWsvbWVkaWEv/Y2F0YWxvZy9wcm9k/dWN0L2NhY2hlLzI5/ZGUxMzUxOTA5OWMw/ZDEwZjZhYmViMDE2/YTc2YjZiL3Mvay9z/a2luX3Ntb290aGlu/Z19jcmVhbV9qdW1i/b18xX2Zyb250Lmpw/Zw" alt="Dermalogica Skin Smoothing Cream SPF35">
+  <h3>Dermalogica Skin Smoothing Cream SPF 35 PA+++</h3>
+  <p>Daily protective cream with broad spectrum UV filters; great hydration.</p>
+  <a href="https://www.nykaa.com/dermalogica-skin-smoothing-cream-spf-35/p/def?productId=def" target="_blank" class="buy-btn">Buy Now</a>
+</div>
+
+
+<!-- Juicy Chemistry Anti-Dandruff Shampoo Bar -->
+<div class="product-card">
+  <img src="https://imgs.search.brave.com/QnFZ-yfLGBd7vS-dHfDBgRgeuw4GTEYFolwCHZ1LKr8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtc3RhdGljLm55/a2FhLmNvbS9tZWRp/YS9jYXRhbG9nL3By/b2R1Y3QvdHI6aC04/MDAsdy04MDAsY20t/cGFkX3Jlc2l6ZS8x/L2IvMWJkZjYwZU5Z/SkNIMDAwMDAxNzhf/MUEuanBn" alt="Juicy Chemistry Anti-Dandruff Shampoo Bar">
+  <h3>Juicy Chemistry Anti-Dandruff Shampoo Bar</h3>
+  <p>Relieves itchy scalp & reduces dandruff with natural ingredients.</p>
+  <a href="https://juicychemistry.com/collections/haircare/anti-dandruff-shampoo-bar" target="_blank" class="buy-btn">Buy Now</a>
+</div>
+
+<!-- Earth Rhythm Solid Conditioner Bar (Tamanu, etc) -->
+<div class="product-card">
+  <img src="https://imgs.search.brave.com/EpK8tLx0UAg40lShqZ6b_pfmTF5IfTm5-SMbHGWz7K8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTF6azNIQ25UdUwu/anBn" alt="Earth Rhythm Solid Conditioner Bar (Tamanu, Kukui, Camellia)">
+  <h3>Earth Rhythm Solid Conditioner Bar</h3>
+  <p>Tamanu, Kukui nut & Camellia Oil for deep nourishment & shine.</p>
+  <a href="https://earthrhythm.com/products/solid-conditioner-bar-tamanu-kukui-nut-camellia-oil?variant=41422334787628" target="_blank" class="buy-btn">Buy Now</a>
+</div>
+
+      
+      <!-- MamaEarth -->
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71Wbdf1ML-L.jpg" alt="MamaEarth Face Wash">
+        <h3>MamaEarth Ubtan Face Wash</h3>
+        <p>Gentle face wash with turmeric & saffron for tan removal.</p>
+        <a href="https://mamaearth.in/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- Plum -->
+      <div class="product-card">
+        <img src="https://plumgoodness.com/cdn/shop/products/1-WBG.jpg?v=1689146490&width=1214" alt="Plum Green Tea Moisturizer">
+        <h3>Plum Green Tea Moisturizer</h3>
+        <p>Lightweight moisturizer for oily and acne-prone skin.</p>
+        <a href="https://plumgoodness.com/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- Minimalist -->
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/51YDAPq1JSL._UF1000,1000_QL80_.jpg" alt="Minimalist Salicylic Acid Serum">
+        <h3>Minimalist Salicylic Acid 2%</h3>
+        <p>Effective anti-acne serum with salicylic acid.</p>
+        <a href="https://beminimalist.co/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- The Derma Co -->
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/61r7v2ziqPL._UF1000,1000_QL80_.jpg" alt="Derma Co Sunscreen">
+        <h3>The Derma Co Sunscreen SPF 50</h3>
+        <p>Broad spectrum sunscreen with PA++++ protection.</p>
+        <a href="https://thedermaco.com/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+<!-- Hair Care Section -->
+ 
+<!--<section class="products">
+  <h2><center>Top Hair Care Products</center></h2>
+  <div class="product-grid">
+
+    
+
+   
+    
+
+    <!-- Bare Anatomy Anti-Dandruff Shampoo Pack -->
+    <div class="product-card">
+      <img src="https://imgs.search.brave.com/rjjX_UiBSOAVhCvQkeyUusM-cP8XchS_OhaseRczg4U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pNS53/YWxtYXJ0aW1hZ2Vz/LmNvbS9zZW8vQmFy/ZS1BbmF0b215LVVs/dHJhLVNtb290aGlu/Zy1TaGFtcG9vLUhh/aXItTWFzay1LaXQt/UmVzdG9yZS1TbW9v/dGhuZXNzLVRleHR1/cmUtOC00NS1mbC1v/ei04LTktb3pfYzZi/NDhkMDAtMWM2ZC00/YjM1LWJiZmMtNmZj/M2MwODIxNWEwLjhl/ZmQ4ZGNhOTE0ZWY5/OTQ0Y2IzYzBhYjNh/NTgxYmUzLmpwZWc" alt="Bare Anatomy Anti-Dandruff Shampoo Pack">
+      <h3>Bare Anatomy Anti-Dandruff Shampoo (Pack)</h3>
+      <p>4×250 ml bottles; combats dandruff, keeps scalp healthy.</p>
+      <a href="https://www.fetchnbuy.in/products/bare-anatomy-expert-anti-dandruff-shampoo-250ml" target="_blank" class="buy-btn">Buy Now</a>
+    </div>
+
+    <!-- Kesh King Ayurvedic Shampoo / Oil -->
+    <div class="product-card">
+      <img src="https://imgs.search.brave.com/a5xHyH9Y22DoeWcriXF1Ch_WsOZ0VxcWyykijYTTCm8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/Lzcxc2N0cmZJSXdM/LmpwZw" alt="Kesh King Ayurvedic Hair Care">
+      <h3>Kesh King Ayurvedic Shampoo / Oil</h3>
+      <p>Herbal & Ayurvedic, with Bhringraj, Amla etc. For hair fall reduction.</p>
+      <a href="https://www.nykaa.com/brands/keshking/c/2792" target="_blank" class="buy-btn">Buy Now</a>
+    </div>
+
+    <!-- Forest Essentials Hair Cleanser (Japapatti & Brahmi etc) -->
+    <div class="product-card">
+      <img src="https://imgs.search.brave.com/JA8dNj5wDaFnmhGvlAtypBnnkyIr6vCIPB-FXGHdPso/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMubXludGFzc2V0/cy5jb20vZHByXzIs/cV82MCx3XzIxMCxj/X2xpbWl0LGZsX3By/b2dyZXNzaXZlL2Fz/c2V0cy9pbWFnZXMv/MTI1Mjk2NzYvMjAy/NS83LzIvOWM2OGI0/ZmUtZjM4ZC00NGY1/LWI1ZWQtMzY1NzZj/YjFlZTdhMTc1MTQz/NzU3NTQyMy1Gb3Jl/c3QtRXNzZW50aWFs/cy1IYWlyLUNsZWFu/c2VyLUphcGFwYXR0/aS0tQnJhaG1pLVNo/YW1wb28tZm8tMS5q/cGc" alt="Forest Essentials Hair Cleanser">
+      <h3>Forest Essentials Hair Cleanser</h3>
+      <p>Luxury Ayurvedic cleanser like Bhringraj & Shikakai; nourishing & gentle.</p>
+      <a href="https://www.forestessentialsindia.com/hair-care.html" target="_blank" class="buy-btn">Buy Now</a>
+    </div>
+
+    <!-- L’Oréal Paris Hair Care Range -->
+    <div class="product-card">
+      <img src="https://imgs.search.brave.com/5eFVjLZ-tMAx1OmN1W0i6oY5AfWkt0RBLCH5g5sYazc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bG9va2ZhbnRhc3Rp/Yy5jb20vaW1hZ2Vz/P3VybD1odHRwczov/L3N0YXRpYy50aGNk/bi5jb20vcHJvZHVj/dGltZy9vcmlnaW5h/bC8xNTk0Mzk4OS03/Mjc1MjEwNzg2ODk4/MTExLmpwZyZmb3Jt/YXQ9d2VicCZhdXRv/PWF2aWYmd2lkdGg9/NjQwJmhlaWdodD02/NDAmZml0PWNyb3A" alt="L'Oréal Paris Hair Care">
+      <h3>L’Oréal Paris Hair Care</h3>
+      <p>Wide range of shampoos, serums & conditioners for all hair types.</p>
+      <a href="https://www.lorealparis.co.in/hair-care" target="_blank" class="buy-btn">Buy Now</a>
+    </div>
+          <!-- SkinKraft -->
+      <div class="product-card">
+        <img src="https://imgs.search.brave.com/B_xp0pVYIAyTml8BI4itUmbzOPBREFTLA2aKgxzckZ4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vaXdNbEpH/VUh2U3NmeUwtVTNz/NUdsS3YxVnVLUlQ4/TEhMcXFYOU91YmY1/NC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTkRGNk5uaGxT/bWhpWjB3dS9hbkJu" alt="SkinKraft Niacinamide Serum">
+        <h3>SkinKraft Niacinamide Serum</h3>
+        <p>Personalized skincare solution with Niacinamide to improve skin texture.</p>
+        <a href="https://skinkraft.com/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- WOW Skin Science -->
+      <div class="product-card">
+        <img src="https://imgs.search.brave.com/Ngi8zgKf0E2CpJuAaG_bYgSFsNxf1-SLAgD-OspuhFY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbmNp/ZGVjb2Rlci1jb250/ZW50LnN0b3JhZ2Uu/Z29vZ2xlYXBpcy5j/b20vY2U3YjJjMGEt/NTEzNi00ZDdkLTgz/NTEtYzg0MjJjMzhm/Y2RkL3Byb2R1Y3Rz/L3dvdy1za2luLXNj/aWVuY2UtYXBwbGUt/Y2lkZXItdmluZWdh/ci1zaGFtcG9vL3dv/dy1za2luLXNjaWVu/Y2UtYXBwbGUtY2lk/ZXItdmluZWdhci1z/aGFtcG9vX2Zyb250/X3Bob3RvX29yaWdp/bmFsLmpwZWc" alt="WOW Skin Science Apple Cider Vinegar Shampoo">
+        <h3>WOW Skin Science Apple Cider Vinegar Shampoo</h3>
+        <p>Clarifying shampoo that removes buildup & restores shine.</p>
+        <a href="https://www.buywow.in/" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- Biotique -->
+      <div class="product-card">
+        <img src=https://imgs.search.brave.com/BWfU94J4e-NvS7bjaE1-Ir3huYY7PKEVzzb_u60u0kU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDErcDFiVkh4NEwu/anBn alt="Biotique Bio Morning Nectar Moisturizer">
+        <h3>Biotique Bio Morning Nectar Moisturizer</h3>
+        <p>Ayurvedic moisturizer that nourishes & hydrates skin naturally.</p>
+        <a href="https://www.biotique.com/" target="_blank" class="buy-btn">Buy Now</a>
+
+
+  </div>
+</section>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+
+    searchInput.addEventListener('input', () => {
+      clearBtn.style.display = searchInput.value ? 'block' : 'none';
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+    });
+  </script>
+</body>
+</html>
